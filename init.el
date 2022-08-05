@@ -86,7 +86,7 @@
 (setq ring-bell-function 'ignore)
 
 ;; *.~  バックアップファイルを作らない
-(setq make-backup-files nil)
+(setq make-backup-files t)
 
 ;; .#*  バックアップファイルを作らない
 (setq auto-save-default nil)
