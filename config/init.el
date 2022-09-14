@@ -1,8 +1,29 @@
-; ========================================
+;; ========================================
+;;  terminalで以下のコマンドを使用
+;;  export PATH="$PATH:$GOPATH/bin"
+;;  go install golang.org/x/tools/gopls@latest
 ;;  下記のコマンドをemacsで入力して使用
+;;  ・M-x = Metaキー(デフォルトではEsc)+x
+;;  ・RET = Return
+;;  -MELPAを有効化-
+;;  M-x package-refresh-contents
+;;  -packageのインストール-
 ;;  M-x package-install RET company RET
 ;;  M-x package-install RET go-mode RET
+;;  M-x package-install RET lsp-mode
+;;  M-x package-install RET lsp-ui
 ;; ========================================
+
+;;  goの補完を行う際にはディレクトリ内部に
+;;  権限的にアクセスできないフォルダがあるとうまく動かない
+
+;; LSPを使うために外部のパッケージのリポジトリであるMELPAを入れる
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+;; Comment/uncomment this line to enable MELPA Stable if desired.  See `package-archive-priorities`
+;; and `package-pinned-packages`. Most users will not need or want to do this.
+;;(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+(package-initialize)
 
 ;; font
 (add-to-list 'default-frame-alist '(font . "ricty-12"))
@@ -125,7 +146,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages '(## go-mode smartparens company)))
+ '(package-selected-packages
+   '(company-go lsp-ui lsp-mode ## go-mode smartparens company)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -175,3 +197,8 @@
     (setq tab-width 4) 
     (setq standard-indent 4) 
     (setq indent-tabs-mode nil)))
+;; go-modeのときlspする
+(add-hook 'go-mode-hook #'lsp-deferred)
+;; yasnippetをインストールしていない or snippetを使わない
+(with-eval-after-load 'lsp-mode
+  (setq lsp-enable-snippet nil))
