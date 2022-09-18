@@ -9,7 +9,7 @@
 > curl -OL https://raw.githubusercontent.com/RintaroNagano/config_files/main/config/.zshrc
 
 ## bash
-> curl -OL https://raw.githubusercontent.com/RintaroNagano/config_files/main/setup/setup_bash.sh &\\
-> chmod +x setup_bash.sh &\\
+> curl -OL https://raw.githubusercontent.com/RintaroNagano/config_files/main/setup/setup_bash.sh &\\　\
+> chmod +x setup_bash.sh &\\ \
 > ./setup_bash.sh
 
