@@ -1,0 +1,39 @@
+{
+    "workbench.colorTheme": "Monokai Dimmed",
+    "redhat.telemetry.enabled": true,
+
+    "latex-workshop.latex.recipe.default": "latexmk (latexmkrc)",
+    "latex-workshop.latex.autoBuild.run": "onFileChange",
+    "latex-workshop.latex.tools": [
+      { // ここから追記
+        "name": "latexmk-uplatex",
+        "command": "latexmk",
+        "args": [
+          "-synctex=1",
+          "-interaction=nonstopmode",
+          "-file-line-error",
+          "-pdfdvi",
+          "-outdir=%OUTDIR%",
+          "%DOC%"
+        ],
+        "env": {}
+      },
+    ],
+
+    "latex-workshop.latex.recipes": [
+      { // ここから追記
+        "name": "latexmk (uplatex)",
+        "tools": [
+          "latexmk-uplatex"
+        ]
+      }, // ここまで追記
+    ],
+
+    "vim.insertModeKeyBindings": [
+      {
+          "before": ["j", "j"],
+          "after": ["<Esc>"]
+      }
+    ],
+  "editor.minimap.enabled": false,
+}
